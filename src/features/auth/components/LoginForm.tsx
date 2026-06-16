@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Eye, EyeOff, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { loginUser } from "../services/authapi";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] =
@@ -28,9 +29,11 @@ const LoginForm = () => {
     try {
       // loginUser() integration in next step
 
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1500)
-      );
+      // await new Promise((resolve) =>
+      //   setTimeout(resolve, 1500)
+      // );
+    await loginUser({ email, password });
+      
     } catch {
       setError(
         "Invalid credentials. Please try again."
