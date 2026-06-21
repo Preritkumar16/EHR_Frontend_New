@@ -13,6 +13,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuthStore } from "@/store/authStore";
 import { loginUser } from "../services/authApi";
 
 const LoginForm = () => {
@@ -48,23 +49,19 @@ const LoginForm = () => {
         case "DOCTOR":
           navigate("/doctor/dashboard");
           break;
+        case "PATIENT":
+          navigate("/patient/dashboard");
+          break;
 
-      // await new Promise((resolve) =>
-      //   setTimeout(resolve, 1500)
-      // );
-    await loginUser({ email, password });
-      case "PATIENT":
-    navigate("/patient/dashboard");
-    break;
-
-default:
-    navigate("/");
-  //   } catch {
-  //     setError("Invalid credentials. Please try again.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+        default:
+          navigate("/");
+      }
+    } catch {
+      setError("Invalid credentials. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="rounded border border-outline-variant bg-surface-container-lowest shadow-xl shadow-slate-900/5">
